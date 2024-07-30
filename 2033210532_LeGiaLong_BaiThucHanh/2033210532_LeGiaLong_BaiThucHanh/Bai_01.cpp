@@ -33,6 +33,16 @@ void printArray(int a[], int n) {
 	printf("\n");
 }
 
+void createEvenArray(int a[], int n, int evenArray[], int *evenCount) {
+	*evenCount = 0;
+	for (int i = 0; i < n; i++) {
+		if (a[i] % 2 == 0) {
+			evenArray[*evenCount] = a[i];
+			(*evenCount)++;
+		}
+	}
+}
+
 int main() {
     srand(time(0));
     int a[100], n;
@@ -59,7 +69,11 @@ int main() {
                 printf("Mang ngau nhien: ");
                 printArray(a, n);
                 break;
-            
+			case 2:
+				createEvenArray(a, n, evenArray, &evenCount);
+				printf("Mang so chan: ");
+				printArray(evenArray, evenCount);
+				break;
             case 8:
                 printf("Thoat chuong trinh\n");
                 break;
