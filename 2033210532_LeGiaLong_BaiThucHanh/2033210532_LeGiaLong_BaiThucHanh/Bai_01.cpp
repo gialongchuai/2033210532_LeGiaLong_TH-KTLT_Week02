@@ -50,6 +50,18 @@ int linearSearch(int a[], int n, int x) {
 	return -1;
 }
 
+void interchangeSort(int a[], int n, int ascending) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if ((ascending && a[i] > a[j]) || (!ascending && a[i] < a[j])) {
+				int temp = a[i];
+				a[i] = a[j];
+				a[j] = temp;
+			}
+		}
+	}
+}
+
 int main() {
     srand(time(0));
     int a[100], n;
@@ -89,6 +101,16 @@ int main() {
 					printf("Tim thay x o vi tri: %d\n", result);
 				else
 					printf("Khong tim thay x\n");
+				break;
+			case 4:
+				printf("1. Tang dan\n");
+				printf("2. Giam dan\n");
+				printf("Nhap lua chon: ");
+				int order;
+				scanf("%d", &order);
+				interchangeSort(a, n, order == 1);
+				printf("Mang sau khi sap xep: ");
+				printArray(a, n);
 				break;
             case 8:
                 printf("Thoat chuong trinh\n");
