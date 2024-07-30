@@ -29,8 +29,9 @@ HonSo tongHonSo(HonSo a, HonSo b);
 HonSo hieuHonSo(HonSo a, HonSo b);
 HonSo tichHonSo(HonSo a, HonSo b);
 HonSo thuongHonSo(HonSo a, HonSo b);
-void sapXepTangDan(HonSo b[], int n);
-void sapXepGiamDan(HonSo b[], int n);
+void interchangeSort(HonSo b[], int n);
+void selectionSort(HonSo b[], int n);
+void quickSort(HonSo b[], int left, int right);
 void doiCho(HonSo *a, HonSo *b);
 
 int main() {
@@ -102,6 +103,22 @@ int main() {
 					printf("Hieu: %d %d/%d\n", hieu.phanNguyen, hieu.tuSo, hieu.mauSo);
 					printf("Tich: %d %d/%d\n", tich.phanNguyen, tich.tuSo, tich.mauSo);
 					printf("Thuong: %d %d/%d\n", thuong.phanNguyen, thuong.tuSo, thuong.mauSo);
+					break;
+		}
+		case 7: {
+					int subChoice;
+					printf("1. Interchange Sort\n");
+					printf("2. Selection Sort\n");
+					printf("3. Quick Sort\n");
+					printf("Nhap lua chon cua ban: ");
+					scanf("%d", &subChoice);
+					if (subChoice == 1)
+						interchangeSort(b, n);
+					else if (subChoice == 2)
+						selectionSort(b, n);
+					else if (subChoice == 3)
+						quickSort(b, 0, n - 1);
+					xuatMangHonSo(b, n);
 					break;
 		}
 		case 0:
@@ -187,4 +204,53 @@ HonSo thuongHonSo(HonSo a, HonSo b) {
 	int tuSoThuong = tuSoA * mauSoB;
 	int mauSoThuong = mauSoA * tuSoB;
 	return chuyenPhanSoSangHonSo(tuSoThuong, mauSoThuong);
+}
+
+void interchangeSort(HonSo b[], int n) {
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = i + 1; j < n; j++) {
+			if (soSanhHonSo(b[i], b[j]) > 0) {
+				doiCho(&b[i], &b[j]);
+			}
+		}
+	}
+}
+
+void selectionSort(HonSo b[], int n) {
+	for (int i = 0; i < n - 1; i++) {
+		int minIdx = i;
+		for (int j = i + 1; j < n; j++) {
+			if (soSanhHonSo(b[j], b[minIdx]) < 0) {
+				minIdx = j;
+			}
+		}
+		doiCho(&b[i], &b[minIdx]);
+	}
+}
+
+int partition(HonSo b[], int left, int right) {
+	HonSo pivot = b[right];
+	int i = left - 1;
+	for (int j = left; j < right; j++) {
+		if (soSanhHonSo(b[j], pivot) < 0) {
+			i++;
+			doiCho(&b[i], &b[j]);
+		}
+	}
+	doiCho(&b[i + 1], &b[right]);
+	return i + 1;
+}
+
+void quickSort(HonSo b[], int left, int right) {
+	if (left < right) {
+		int pi = partition(b, left, right);
+		quickSort(b, left, pi - 1);
+		quickSort(b, pi + 1, right);
+	}
+}
+
+void doiCho(HonSo *a, HonSo *b) {
+	HonSo temp = *a;
+	*a = *b;
+	*b = temp;
 }
