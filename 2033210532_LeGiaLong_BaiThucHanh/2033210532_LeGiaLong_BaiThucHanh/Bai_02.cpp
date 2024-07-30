@@ -73,6 +73,15 @@ int main() {
 						printf("2 hon so bang nhau\n");
 					break;
 		}
+		case 4: {
+					int i;
+					printf("Nhap chi so cua hon so can chuyen (0-%d): ", n - 1);
+					scanf("%d", &i);
+					int tuSo, mauSo;
+					chuyenHonSoSangPhanSo(b[i], &tuSo, &mauSo);
+					printf("Phan so tuong duong: %d/%d\n", tuSo, mauSo);
+					break;
+		}
 		case 0:
 			printf("Thoat chuong trinh\n");
 			break;
