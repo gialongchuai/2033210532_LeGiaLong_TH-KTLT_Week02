@@ -171,6 +171,11 @@ int main() {
 				printf("Mang sau khi sap xep theo Selection Sort: ");
 				printArray(a, n);
 				break;
+			case 7:
+				quickSort(a, 0, n - 1);
+				printf("Mang sau khi sap xep theo Quick Sort: ");
+				printArray(a, n);
+				break;
             case 8:
                 printf("Thoat chuong trinh\n");
                 break;
