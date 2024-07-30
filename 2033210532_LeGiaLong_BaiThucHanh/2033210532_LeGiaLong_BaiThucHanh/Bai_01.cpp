@@ -43,6 +43,13 @@ void createEvenArray(int a[], int n, int evenArray[], int *evenCount) {
 	}
 }
 
+int linearSearch(int a[], int n, int x) {
+	for (int i = 0; i < n; i++) {
+		if (a[i] == x) return i;
+	}
+	return -1;
+}
+
 int main() {
     srand(time(0));
     int a[100], n;
@@ -73,6 +80,15 @@ int main() {
 				createEvenArray(a, n, evenArray, &evenCount);
 				printf("Mang so chan: ");
 				printArray(evenArray, evenCount);
+				break;
+			case 3:
+				printf("Nhap gia tri x: ");
+				scanf("%d", &x);
+				result = linearSearch(a, n, x);
+				if (result != -1)
+					printf("Tim thay x o vi tri: %d\n", result);
+				else
+					printf("Khong tim thay x\n");
 				break;
             case 8:
                 printf("Thoat chuong trinh\n");
