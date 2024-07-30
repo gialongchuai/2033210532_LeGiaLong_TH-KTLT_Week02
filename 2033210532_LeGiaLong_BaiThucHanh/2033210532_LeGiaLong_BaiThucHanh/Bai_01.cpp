@@ -87,6 +87,25 @@ void selectionSort(int a[], int n) {
 	}
 }
 
+void quickSort(int a[], int left, int right) {
+	if (left >= right) return;
+	int pivot = a[(left + right) / 2];
+	int i = left, j = right;
+	while (i <= j) {
+		while (a[i] < pivot) i++;
+		while (a[j] > pivot) j--;
+		if (i <= j) {
+			int temp = a[i];
+			a[i] = a[j];
+			a[j] = temp;
+			i++;
+			j--;
+		}
+	}
+	quickSort(a, left, j);
+	quickSort(a, i, right);
+}
+
 int main() {
     srand(time(0));
     int a[100], n;
@@ -146,6 +165,11 @@ int main() {
 					printf("Tim thay x o vi tri: %d\n", result);
 				else
 					printf("Khong tim thay x\n");
+				break;
+			case 6:
+				selectionSort(a, n);
+				printf("Mang sau khi sap xep theo Selection Sort: ");
+				printArray(a, n);
 				break;
             case 8:
                 printf("Thoat chuong trinh\n");
