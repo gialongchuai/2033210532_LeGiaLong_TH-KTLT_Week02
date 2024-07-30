@@ -90,6 +90,20 @@ int main() {
 					printf("Hon so tuong duong: %d %d/%d\n", hs.phanNguyen, hs.tuSo, hs.mauSo);
 					break;
 		}
+		case 6: {
+					int i, j;
+					printf("Nhap chi so cua 2 hon so can tinh (0-%d): ", n - 1);
+					scanf("%d %d", &i, &j);
+					HonSo tong = tongHonSo(b[i], b[j]);
+					HonSo hieu = hieuHonSo(b[i], b[j]);
+					HonSo tich = tichHonSo(b[i], b[j]);
+					HonSo thuong = thuongHonSo(b[i], b[j]);
+					printf("Tong: %d %d/%d\n", tong.phanNguyen, tong.tuSo, tong.mauSo);
+					printf("Hieu: %d %d/%d\n", hieu.phanNguyen, hieu.tuSo, hieu.mauSo);
+					printf("Tich: %d %d/%d\n", tich.phanNguyen, tich.tuSo, tich.mauSo);
+					printf("Thuong: %d %d/%d\n", thuong.phanNguyen, thuong.tuSo, thuong.mauSo);
+					break;
+		}
 		case 0:
 			printf("Thoat chuong trinh\n");
 			break;
@@ -146,4 +160,31 @@ HonSo tongHonSo(HonSo a, HonSo b) {
 	int tuSoTong = tuSoA * mauSoB + tuSoB * mauSoA;
 	int mauSoTong = mauSoA * mauSoB;
 	return chuyenPhanSoSangHonSo(tuSoTong, mauSoTong);
+}
+
+HonSo hieuHonSo(HonSo a, HonSo b) {
+	int tuSoA, mauSoA, tuSoB, mauSoB;
+	chuyenHonSoSangPhanSo(a, &tuSoA, &mauSoA);
+	chuyenHonSoSangPhanSo(b, &tuSoB, &mauSoB);
+	int tuSoHieu = tuSoA * mauSoB - tuSoB * mauSoA;
+	int mauSoHieu = mauSoA * mauSoB;
+	return chuyenPhanSoSangHonSo(tuSoHieu, mauSoHieu);
+}
+
+HonSo tichHonSo(HonSo a, HonSo b) {
+	int tuSoA, mauSoA, tuSoB, mauSoB;
+	chuyenHonSoSangPhanSo(a, &tuSoA, &mauSoA);
+	chuyenHonSoSangPhanSo(b, &tuSoB, &mauSoB);
+	int tuSoTich = tuSoA * tuSoB;
+	int mauSoTich = mauSoA * mauSoB;
+	return chuyenPhanSoSangHonSo(tuSoTich, mauSoTich);
+}
+
+HonSo thuongHonSo(HonSo a, HonSo b) {
+	int tuSoA, mauSoA, tuSoB, mauSoB;
+	chuyenHonSoSangPhanSo(a, &tuSoA, &mauSoA);
+	chuyenHonSoSangPhanSo(b, &tuSoB, &mauSoB);
+	int tuSoThuong = tuSoA * mauSoB;
+	int mauSoThuong = mauSoA * tuSoB;
+	return chuyenPhanSoSangHonSo(tuSoThuong, mauSoThuong);
 }
