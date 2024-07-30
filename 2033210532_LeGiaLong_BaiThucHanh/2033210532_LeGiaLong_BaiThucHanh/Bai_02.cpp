@@ -82,6 +82,14 @@ int main() {
 					printf("Phan so tuong duong: %d/%d\n", tuSo, mauSo);
 					break;
 		}
+		case 5: {
+					int tuSo, mauSo;
+					printf("Nhap phan so (tu so/mau so): ");
+					scanf("%d/%d", &tuSo, &mauSo);
+					HonSo hs = chuyenPhanSoSangHonSo(tuSo, mauSo);
+					printf("Hon so tuong duong: %d %d/%d\n", hs.phanNguyen, hs.tuSo, hs.mauSo);
+					break;
+		}
 		case 0:
 			printf("Thoat chuong trinh\n");
 			break;
@@ -129,4 +137,13 @@ HonSo chuyenPhanSoSangHonSo(int tuSo, int mauSo) {
 	hs.tuSo = tuSo % mauSo;
 	hs.mauSo = mauSo;
 	return hs;
+}
+
+HonSo tongHonSo(HonSo a, HonSo b) {
+	int tuSoA, mauSoA, tuSoB, mauSoB;
+	chuyenHonSoSangPhanSo(a, &tuSoA, &mauSoA);
+	chuyenHonSoSangPhanSo(b, &tuSoB, &mauSoB);
+	int tuSoTong = tuSoA * mauSoB + tuSoB * mauSoA;
+	int mauSoTong = mauSoA * mauSoB;
+	return chuyenPhanSoSangHonSo(tuSoTong, mauSoTong);
 }
