@@ -62,6 +62,31 @@ void interchangeSort(int a[], int n, int ascending) {
 	}
 }
 
+int binarySearch(int a[], int n, int x) {
+	int left = 0, right = n - 1;
+	while (left <= right) {
+		int mid = (left + right) / 2;
+		if (a[mid] == x) return mid;
+		if (a[mid] < x) left = mid + 1;
+		else right = mid - 1;
+	}
+	return -1;
+}
+
+void selectionSort(int a[], int n) {
+	for (int i = 0; i < n - 1; i++) {
+		int minIdx = i;
+		for (int j = i + 1; j < n; j++) {
+			if (a[j] < a[minIdx]) {
+				minIdx = j;
+			}
+		}
+		int temp = a[i];
+		a[i] = a[minIdx];
+		a[minIdx] = temp;
+	}
+}
+
 int main() {
     srand(time(0));
     int a[100], n;
@@ -111,6 +136,16 @@ int main() {
 				interchangeSort(a, n, order == 1);
 				printf("Mang sau khi sap xep: ");
 				printArray(a, n);
+				break;
+			case 5:
+				selectionSort(a, n); // Mang can duoc sap xep truoc khi tim kiem binary
+				printf("Nhap gia tri x: ");
+				scanf("%d", &x);
+				result = binarySearch(a, n, x);
+				if (result != -1)
+					printf("Tim thay x o vi tri: %d\n", result);
+				else
+					printf("Khong tim thay x\n");
 				break;
             case 8:
                 printf("Thoat chuong trinh\n");
